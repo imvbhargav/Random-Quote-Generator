@@ -1,6 +1,5 @@
 <p>Random Quote Generator created using the create-react-app to complete the project in FreeCodeCamp. </p>
 <h4>The FreeCodeCamp Project:</h4>
--------------------------------------------------------------------------------------------------------------------------------------------------------------
 <h2>Build a Random Quote Machine</h2>
 Note: React 18 has known incompatibilities with the tests for this project (see issue)
 
@@ -124,5 +123,5 @@ GET /quotes/random?minLength=100&maxLength=140
 ```
 
 <br>
---------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Deployment Link : https://random-quote-generator-bhargav-jois.vercel.app/
+<hr/>
+<a href="https://random-quote-generator-bhargav-jois.vercel.app/">Deployed on Vercel</a>
