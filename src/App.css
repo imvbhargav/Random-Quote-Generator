@@ -1,0 +1,144 @@
+/* App.css */
+
+#root, html, body {
+	margin: 0;
+	padding: 0;
+	height: 100vh;
+	box-sizing: border-box;
+}
+	
+.app {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	background-size: cover;
+	background-position: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}
+	
+.card {
+	background: whitesmoke;
+	width: 40%;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	border-radius: 25px;
+	padding: 2%;
+}
+	
+.heading {
+	display: flex;
+	align-items: center;
+	font-family: 'Hina Mincho', sans-serif;
+	color: #070739;
+}
+
+.author{
+	font-family: 'IM Fell English SC', sans-serif;
+	color: #070739;
+}
+	
+.button {
+	position: relative;
+	outline: none;
+	text-decoration: none;
+	border-radius: 50px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+	opacity: 1;
+	padding: 1em 2em;
+	border: none;
+}
+
+.twitter-a{
+	text-decoration: none;
+	color: #070739;
+	font-size: 12px;
+  	font-weight: 800;
+	letter-spacing: 0.7px;
+	padding: 1em 2em;
+}
+
+.twitter{
+	padding: 0;
+}
+	
+.btns{
+	width: 90%;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.button span {
+	color: #032661;
+	font-size: 12px;
+  	font-weight: 800;
+	letter-spacing: 0.7px;
+}
+	
+.button:hover {
+	animation: rotate 0.7s ease-in-out both;
+  background-color: rgb(163, 252, 252);
+}
+	
+.button:hover span {
+	animation: storm 0.7s ease-in-out both;
+	animation-delay: 0.06s;
+}
+
+	
+@keyframes rotate {
+	0% {
+	transform: rotate(0deg) translate3d(0, 0, 0);
+	}
+	25% {
+	transform: rotate(3deg) translate3d(0, 0, 0);
+	}
+	50% {
+	transform: rotate(-3deg) translate3d(0, 0, 0);
+	}
+	75% {
+	transform: rotate(1deg) translate3d(0, 0, 0);
+	}
+	100% {
+	transform: rotate(0deg) translate3d(0, 0, 0);
+	}
+}
+	
+@keyframes storm {
+	0% {
+	transform: translate3d(0, 0, 0) translateZ(0);
+	}
+	25% {
+	transform: translate3d(4px, 0, 0) translateZ(0);
+	}
+	50% {
+	transform: translate3d(-3px, 0, 0) translateZ(0);
+	}
+	75% {
+	transform: translate3d(2px, 0, 0) translateZ(0);
+	}
+	100% {
+	transform: translate3d(0, 0, 0) translateZ(0);
+	}
+}
+
+@media only screen and (max-width: 1007px) {
+	.card {
+		width: 60%;
+		height: 30%;
+	}
+}
+	
+@media only screen and (max-width: 600px) {
+	.card {
+		width: 80%;
+		height: 40%;
+	}
+}
