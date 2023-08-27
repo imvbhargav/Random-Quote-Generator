@@ -1,7 +1,7 @@
 <p>Random Quote Generator created using the create-react-app to complete the project in FreeCodeCamp. </p>
 <h4>The FreeCodeCamp Project:</h4>
 -------------------------------------------------------------------------------------------------------------------------------------------------------------
-Build a Random Quote Machine
+<h2>Build a Random Quote Machine</h2>
 Note: React 18 has known incompatibilities with the tests for this project (see issue)
 
 Objective: Build an app that is functionally similar to this: https://random-quote-machine.freecodecamp.rocks/.
