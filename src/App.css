@@ -132,13 +132,30 @@
 @media only screen and (max-width: 1007px) {
 	.card {
 		width: 60%;
-		height: 30%;
+		height: auto;
 	}
 }
 	
 @media only screen and (max-width: 600px) {
 	.card {
 		width: 80%;
-		height: 40%;
+		height: auto;
+		padding: 1em;
+	}
+	.heading {
+		font-size: 1em;
+	}
+	.author{
+		font-size: 12px;
+	}
+	.button {
+		padding: 6px 18px;
+	}
+	.twitter-a{
+		font-size: 8px;
+		padding: 6px 8px;
+	}
+	.button span {
+		font-size: 8px;
 	}
 }
