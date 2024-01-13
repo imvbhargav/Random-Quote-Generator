@@ -1,24 +1,31 @@
 import React from "react";
-
 import "./App.css";
-
+import possibleCategories from "./categories";
 class App extends React.Component {
-	state = { content: "", author: "", isLoading: true };
+	state = { quote: "", author: "", category: "",  isLoading: true };
 
 	componentDidMount() {
 		this.fetchAdvice();
 	}
 
 	fetchAdvice = async() => {
-    	const api_url ="https://api.quotable.io/quotes/random";
+		let chosenCategory = possibleCategories[parseInt(Math.random()*10)]
+		console.log(Math.random()*10)
+    	const api_url =`https://api.api-ninjas.com/v1/quotes?category=${chosenCategory}`;
     	try{
 
-      		const response = await fetch(api_url);
+      		const response = await fetch(api_url, {
+				method: 'get',
+				headers: {
+					'X-Api-Key': 'U1CPH1Scgn+o991ervQ3jw==OkX6nsp9BeFqYKJo'
+				}
+			});
       		var data = await response.json();
+			console.log(data)
 
-      		const { content, author } = data[0];
+      		const { author, category, quote } = data[0];
 			const { isLoading } = false
-      		this.setState({ content, author, isLoading });
+      		this.setState({ quote, author, category, isLoading });
 
     	} catch (error){
       		console.log(error);
@@ -45,7 +52,7 @@ class App extends React.Component {
 	};
 
 	render() {
-		const { content, author, isLoading } = this.state;
+		const { quote, author, category, isLoading } = this.state;
 		var colors = [
 			'#FFEEEE',
 			'#FFF6EA',
@@ -69,7 +76,7 @@ class App extends React.Component {
 			"10px 10px 20px" + this.newShade(colors[color], -15),
 			"-10px -10px 20px" + this.newShade(colors[color], 10)
 		]
-		const tweetLink = `https://twitter.com/intent/tweet?hashtags=quotes&text="${content}"%0a-${author}`
+		const tweetLink = `https://twitter.com/intent/tweet?hashtags=quotes&text="${quote}"%0a-${author}`
 		return (
 			<div className="app" style={{
 					backgroundColor: colors[color]
@@ -79,8 +86,8 @@ class App extends React.Component {
 					backgroundColor :  colors[color],
 					boxShadow : divShadow
 				}}>
-					<h1 className="heading" id="text">"{content}"</h1>
-          			<h4 className="author" id="author"><i>- {author}</i></h4>
+					<h1 className="heading" id="text">"{quote}"</h1>
+          			<h4 className="author" id="author"><i>- {author} | {category}</i></h4>
 					<div className="btns">
 						<button className="button twitter" style={{
 							backgroundColor :  colors[color],
