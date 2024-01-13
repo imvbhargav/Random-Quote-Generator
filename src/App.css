@@ -92,6 +92,11 @@
 	animation-delay: 0.06s;
 }
 
+.link_author{
+	color: purple;
+	text-decoration: none;
+}
+
 	
 @keyframes rotate {
 	0% {

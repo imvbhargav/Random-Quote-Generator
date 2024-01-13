@@ -9,6 +9,7 @@ class App extends React.Component {
 	}
 
 	fetchAdvice = async() => {
+		this.setState({ quote: "", author: "", category: "", isLoading: true });
 		let chosenCategory = possibleCategories[parseInt(Math.random()*10)]
 		console.log(Math.random()*10)
     	const api_url =`https://api.api-ninjas.com/v1/quotes?category=${chosenCategory}`;
@@ -87,7 +88,9 @@ class App extends React.Component {
 					boxShadow : divShadow
 				}}>
 					<h1 className="heading" id="text">"{quote}"</h1>
-          			<h4 className="author" id="author"><i>- {author} | {category}</i></h4>
+          			<h4 className="author" id="author"><i>- <span>
+						<a class="link_author" href={`https://en.wikipedia.org/wiki/${author.replace(/ /g, "_")}`}>{author}</a>
+						</span> | {category}</i></h4>
 					<div className="btns">
 						<button className="button twitter" style={{
 							backgroundColor :  colors[color],
