@@ -1,4 +1,4 @@
-# freeCodeCamp Front End Development Libraries Certification Project.
+# freeCodeCamp's Front End Development Libraries Certification Project.
 ## Random Quote Generator
 ### Test Conditions passed: 12/12
 #### Technology Stack
