@@ -89,7 +89,7 @@ class App extends React.Component {
 				}}>
 					<h1 className="heading" id="text">"{quote}"</h1>
           			<h4 className="author" id="author"><i>- <span>
-						<a class="link_author" href={`https://en.wikipedia.org/wiki/${author.replace(/ /g, "_")}`}>{author}</a>
+						<a class="link_author" target="_blank" rel="noreferrer" href={`https://en.wikipedia.org/wiki/${author.replace(/ /g, "_")}`}>{author}</a>
 						</span> | {category}</i></h4>
 					<div className="btns">
 						<button className="button twitter" style={{
