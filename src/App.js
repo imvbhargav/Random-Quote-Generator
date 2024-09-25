@@ -10,16 +10,10 @@ class App extends React.Component {
 
 	fetchAdvice = async() => {
 		this.setState({ content: "", author: "", isLoading: true });
-	    	const api_url =`https://favqs.com/api/qotd`;
+	    	const api_url =`https://quotes-api-self.vercel.app/quote`;
 	    	try{
 
-	      		const response = await fetch(api_url, {
-			          method: 'GET',
-			          headers: {
-			            'Content-Type': 'application/json',
-			            'Authorization': Token token="2626f4e28dd7050cd137b57c32c41a0f",
-			          }
-			        });
+	      		const response = await fetch(api_url);
 	      		var data = await response.json();
 				console.log(data)
 	
