@@ -10,10 +10,16 @@ class App extends React.Component {
 
 	fetchAdvice = async() => {
 		this.setState({ content: "", author: "", isLoading: true });
-	    	const api_url =`https://cors-anywhere.herokuapp.com/https://favqs.com/api/qotd`;
+	    	const api_url =`https://favqs.com/api/qotd`;
 	    	try{
 
-	      		const response = await fetch(api_url);
+	      		const response = await fetch(api_url, , {
+			          method: 'GET',
+			          headers: {
+			            'Content-Type': 'application/json',
+			            'Authorization': Token token=process.env.REACT_APP_API_KEY,
+			          }
+			        });
 	      		var data = await response.json();
 				console.log(data)
 	
