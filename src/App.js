@@ -13,7 +13,7 @@ class App extends React.Component {
 	    	const api_url =`https://favqs.com/api/qotd`;
 	    	try{
 
-	      		const response = await fetch(api_url, , {
+	      		const response = await fetch(api_url, {
 			          method: 'GET',
 			          headers: {
 			            'Content-Type': 'application/json',
