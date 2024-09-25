@@ -17,8 +17,8 @@ class App extends React.Component {
 	      		var data = await response.json();
 				console.log(data)
 	
-	      		const content = data[0].quote.body;
-			const author = data[0].quote.author;
+	      		const content = data.quote.body;
+			const author = data.quote.author;
 			
 			const { isLoading } = false
 	      		this.setState({ content, author, isLoading });
