@@ -10,7 +10,7 @@ class App extends React.Component {
 
 	fetchAdvice = async() => {
 		this.setState({ content: "", author: "", isLoading: true });
-	    	const api_url =`http://api.quotable.io/random`;
+	    	const api_url =`https://zenquotes.io/api/random`;
 	    	try{
 
 	      		const response = await fetch(api_url);
