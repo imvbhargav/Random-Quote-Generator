@@ -10,7 +10,7 @@ class App extends React.Component {
 
 	fetchAdvice = async() => {
 		this.setState({ content: "", author: "", isLoading: true });
-	    	const api_url =`https://quotes-api-self.vercel.app/quote`;
+	    	const api_url =`https://cors-anywhere.herokuapp.com/https://favqs.com/api/qotd`;
 	    	try{
 
 	      		const response = await fetch(api_url);
