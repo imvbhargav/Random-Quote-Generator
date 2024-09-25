@@ -46,7 +46,7 @@ class App extends React.Component {
 	};
 
 	render() {
-		const { quote, author, category, isLoading } = this.state;
+		const { content, author, isLoading } = this.state;
 		var colors = [
 			'#FFEEEE',
 			'#FFF6EA',
