@@ -17,7 +17,7 @@ class App extends React.Component {
 			          method: 'GET',
 			          headers: {
 			            'Content-Type': 'application/json',
-			            'Authorization': Token token=process.env.REACT_APP_API_KEY,
+			            'Authorization': Token token="2626f4e28dd7050cd137b57c32c41a0f",
 			          }
 			        });
 	      		var data = await response.json();
