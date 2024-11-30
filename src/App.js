@@ -1,31 +1,28 @@
 import React from "react";
 import "./App.css";
-import possibleCategories from "./categories";
 class App extends React.Component {
-	state = { content: "", author: "",  isLoading: true };
+	state = { content: "Loading... because great things (and sometimes bugs) take time.", author: "Bhargav",  isLoading: true, error: false };
 
-	componentDidMount() {
-		this.fetchAdvice();
+	async componentDidMount() {
+		await this.fetchAdvice();
 	}
 
 	fetchAdvice = async() => {
-		this.setState({ content: "", author: "", isLoading: true });
-	    	const api_url =`https://cors-anywhere.herokuapp.com/https://favqs.com/api/qotd`;
-	    	try{
-
-	      		const response = await fetch(api_url);
-	      		var data = await response.json();
-				console.log(data)
-	
-	      		const content = data.quote.body;
-			const author = data.quote.author;
-			
-			const { isLoading } = false
-	      		this.setState({ content, author, isLoading });
-
-	    	} catch (error){
-	      		console.log(error);
-	    	}
+		this.setState({ content: "Loading... because great things (and sometimes bugs) take time.", author: "Bhargav", isLoading: true });
+		const api_url =`https://quoteslate.vercel.app/api/quotes/random`;
+		try{
+			const response = await fetch(api_url);
+			let data = await response.json();
+			const { content, author, isLoading, error } = { content: data.quote, author: data.author, isLoading: false, error: false };
+			setTimeout(() => {
+				this.setState({ content, author, isLoading, error });
+			}, 1000)
+		} catch (err){
+			console.error(err);
+			const errMessage = "An error is just your code's way of saying, 'Surprise! Bet you didn't see that coming!'";
+			const { content, author, isLoading, error } = { content: errMessage, author: "Bhargav", isLoading: false, error: true };
+			this.setState({ content, author, isLoading, error });
+		}
   	}
 
 	newShade = (hexColor, magnitude) => {
@@ -48,8 +45,8 @@ class App extends React.Component {
 	};
 
 	render() {
-		const { content, author, isLoading } = this.state;
-		var colors = [
+		const { content, author, isLoading, error } = this.state;
+		const colors = [
 			'#FFEEEE',
 			'#FFF6EA',
 			'#F7E9D7',
@@ -63,49 +60,63 @@ class App extends React.Component {
 			'#B3C99C',
 			'#A4BC92'
 		];
-		var color = Math.floor(Math.random() * colors.length);
-		const btnShadow = [
-			"10px 10px 20px" + this.newShade(colors[color], -15) + " inset",
-			"-10px -10px 20px " + this.newShade(colors[color], 10) + " inset"
+		let color = Math.floor(Math.random() * colors.length);
+		let bgcolor = colors[color];
+		let textColor = '#000000';
+		let btnShadow = isLoading ? [
+			"10px 10px 20px" + this.newShade('#808080', -15),
+			"-10px -10px 20px" + this.newShade('#808080', 10)
+		] : [
+			"10px 10px 20px" + this.newShade(colors[color], -15),
+			"-10px -10px 20px " + this.newShade(colors[color], 10)
 		]
-		const divShadow = [
+		let divShadow = isLoading ? [
+			"10px 10px 20px" + this.newShade('#808080', -15),
+			"-10px -10px 20px" + this.newShade('#808080', 10)
+		] : [
 			"10px 10px 20px" + this.newShade(colors[color], -15),
 			"-10px -10px 20px" + this.newShade(colors[color], 10)
-		]
+		] ;
+		if (error) {
+			bgcolor = '#60000B';
+			textColor = '#808080';
+			btnShadow = [
+				"10px 10px 20px" + this.newShade('#60000B', -15),
+				"-10px -10px 20px " + this.newShade('#60000B', 10)
+			];
+			divShadow = [
+				"10px 10px 20px" + this.newShade('#60000B', -15),
+				"-10px -10px 20px" + this.newShade('#60000B', 10)
+			];
+		}
 		const tweetLink = `https://twitter.com/intent/tweet?hashtags=quotes&text="${content}"%0a-${author}`
 		return (
-			<div className="app" style={{
-					backgroundColor: colors[color]
-				}}>
-				{!isLoading ? 
-				<div className="card" id="quote-box" style={{
-					backgroundColor :  colors[color],
-					boxShadow : divShadow
-				}}>
-					<h1 className="heading" id="text">"{content}"</h1>
-          			<h4 className="author" id="author"><i>- <span>
-						<a class="link_author" target="_blank" rel="noreferrer" href={`https://en.wikipedia.org/wiki/${author.replace(/ /g, "_")}`}>{author}</a>
+			<div className="app" style={{backgroundColor: isLoading ? '#808080' : bgcolor}}>
+				<div className="card" id="quote-box" style={{ backgroundColor: isLoading ? '#808080' : bgcolor, boxShadow: divShadow??"" }}>
+					<h1 className="heading" style={{ color: textColor }} id="text">"{content}"</h1>
+					<h4 className="author" id="author" style={{ color: textColor }}><i>- <span>
+						<a className="link_author" target="_blank" rel="noreferrer"
+						   href={`https://en.wikipedia.org/wiki/${author.replace(/ /g, "_")}`}>{author}</a>
 						</span> | Quote</i></h4>
 					<div className="btns">
 						<button className="button twitter" style={{
-							backgroundColor :  colors[color],
-							boxShadow : btnShadow
+							backgroundColor: isLoading ? '#808080' : bgcolor,
+							boxShadow: btnShadow ?? "",
 						}}>
-							<span><a href={tweetLink} className="twitter-a" id="tweet-quote">Tweet!</a></span>
+							<span><a href={tweetLink} className="twitter-a" style={{ color: textColor }} id="tweet-quote">Tweet!</a></span>
 						</button>
 
 						<button className="button" id="new-quote" onClick={this.fetchAdvice} style={{
-							backgroundColor :  colors[color],
-							boxShadow : btnShadow
+							backgroundColor: isLoading ? '#808080' : bgcolor,
+							boxShadow: btnShadow ?? "",
 						}}>
-							<span>New!</span>
+							<span style={{ color: textColor }}>New!</span>
 						</button>
-					</div>					
+					</div>
 				</div>
-				: <h1 className="headings">Loading...</h1>}
-				<p className="author"><small><i>by Bhargav Jois</i></small></p>
+				<p className="author" style={{ color: textColor }}><small><i>by Bhargav Jois</i></small></p>
 			</div>
-		);
+		)
 	}
 }
 
